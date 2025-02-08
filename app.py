@@ -1,49 +1,24 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
 import torch
 import plotly.graph_objects as go
 import re
 import time
 import logging
+import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
-from urllib.parse import urlparse
-import pandas as pd
-import re
-import torch
 from transformers import (
     BertTokenizer,
     BertForSequenceClassification,
-    Trainer,
-    TrainingArguments,
-    EarlyStoppingCallback,
 )
 from datasets import Dataset
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support
-import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
-from wordcloud import WordCloud
-from collections import Counter
-from nltk.tokenize import word_tokenize
 import nltk
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import PCA
-from sklearn.manifold import TSNE
+from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing.text import Tokenizer
-
-import logging
-import re
-import time
-import torch
-import streamlit as st
-from transformers import BertTokenizer, BertForSequenceClassification
 
 nltk.download("stopwords")
 nltk.download("punkt")
