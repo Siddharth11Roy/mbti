@@ -382,7 +382,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col, col2 = st.columns[(4,1)]
+col, col2 = st.columns([4,1])
 st_lottie(lottie_animation, speed=1, height=300, key="personality")
 
 st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
