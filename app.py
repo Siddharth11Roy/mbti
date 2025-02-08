@@ -347,7 +347,7 @@ if "saved_answers" not in st.session_state:
 
 
 st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
-st_lottie(lottie_animation, height=300, key="PERSONALITY")
+st_lottie(lottie_animation, speed=1, height=300, key="personality", background="transparent")
 
 st.markdown(
     """
