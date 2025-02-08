@@ -327,7 +327,7 @@ if st.button("Submit All Answers"):
             outputs = model(**inputs)
 
         prediction = torch.argmax(outputs.logits, dim=1).item()
-        predicted_mbti = MBTI_CLASSES[predicted_index]
+        predicted_mbti = MBTI_CLASSES[prediction]
 
         st.success("Answers submitted successfully! Processing with the model...")
         st.write(f"**Processed Text:**\n{final_text}")  # Optional Debugging
