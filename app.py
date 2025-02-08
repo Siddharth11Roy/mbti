@@ -393,7 +393,6 @@ questions = [
     ["How do you define success?", "Do you prefer spontaneity or routine?", "How do you recharge after a long day?"]
 ]
 
-st_lottie(lottie_animation_2, speed=1, height=300, key="good")
 
 for i, tab in enumerate(tabs):
     with st.expander(tab):
@@ -410,6 +409,8 @@ for i, tab in enumerate(tabs):
                 else:
                     st.session_state.saved_answers[q] = answer
                     st.success("✅ Answer saved!")
+                  
+st_lottie(lottie_animation_2, speed=1, height=300, key="good")
 
 # Final Submit Button
 if st.button("🚀 Submit All Answers"):
