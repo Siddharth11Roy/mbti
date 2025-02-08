@@ -255,7 +255,7 @@ tokenizer, model, device = load_mbti_model()
 def preprocess_text(text):
     text = text.lower()
     text = re.sub(r"http\S+|www.\S+", "", text)  # Remove URLs
-    text = re.sub(r"[^a-zA-Z\s]", text)  # Keep punctuation in questions
+    text = re.sub(r"[^a-zA-Z\s]", "", text)  # Keep punctuation in questions
     text = text.replace("|||", " ")  # Replace separators
     tokens = word_tokenize(text)
     tokens = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
