@@ -453,7 +453,7 @@ for i, tab in enumerate(tabs):
             
             if st.button(f"💾 Save Answer", key=f"save_{i}_{j}"):
                 if len(answer.strip().split()) < 1:
-                    st.warning("⚠️ Elongate the answer! Minimum 1 word required.")
+                    st.warning("⚠️ Please eneter atleast 1 word. If u wish to skip then enter 0")
                 elif answer.strip() == "0":
                     st.info("⏭️ Skipped question.")
                     st.session_state.saved_answers[q] = "Skipped."
