@@ -221,6 +221,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import hashlib
+from streamlit_lottie import st_lottie
+import requests
 
 # Download required NLTK resources
 import nltk
@@ -251,6 +253,13 @@ def load_mbti_model():
 # Load the model once and use it throughout the app
 tokenizer, model, device = load_mbti_model()
 
+def load_lottieurl(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
 # Preprocessing function
 def preprocess_text(text):
     text = text.lower()
@@ -273,9 +282,14 @@ MBTI_CLASSES = [
     "ESTJ", "ESFJ", "ENFJ", "ENTJ"
 ]
 
+lottie_url = "https://lottie.host/0c9630b4-89f8-4e0f-a30e-9b52fa5b3b0b/R5oTQhvLgi.json"  # Example generated Lottie animation
+lottie_animation = load_lottieurl(lottie_url)
+
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
     st.session_state.saved_answers = {}
+
+
 
 # Streamlit UI
 # st.title("MBTI Personality Classification")
@@ -371,8 +385,11 @@ st.markdown(
 )
 
 st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
-st.image("personality_image.jpg", use_column_width=True, caption="Your Personality, Your Story", output_format="auto")
-
+if lottie_animation:
+    st_lottie(lottie_animation, speed=1, height=300, key="personality")
+else:
+    st.warning("Lottie animation could not be loaded.")
+  
 tabs = ["💡 Topic 1", "🤔 Topic 2", "🚀 Topic 3", "🧩 Topic 4", "🎭 Topic 5"]
 questions = [
     ["What motivates you?", "How do you handle stress?", "Describe your ideal work environment."],
