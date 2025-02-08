@@ -282,6 +282,45 @@ MBTI_CLASSES = [
     "ESTJ", "ESFJ", "ENFJ", "ENTJ"
 ]
 
+
+CAREER_PATHS = {
+    "INTJ": ["Software Developer/Engineer", "Investment Analyst / Financial Strategist", "Startup Founder / CEO", "Lawyer", "Policy Analyst", "Research Scientist"],
+    "INTP": ["Writer", "Professor/Researcher", "Philosopher", "Forensic Scientist", "Astronomer", "Research Scientist"],
+    "ENTJ": ["Entrepreneur", "Investment Banker", "Politician", "Military Officer", "Film Director", "Civil Servant"],
+    "ENTP": ["Journalist/Investigative Reporter", "Public Speaker", "Podcast Host/Content Creator", "Venture Capitalist", "Tech Startup Founder", "Marketing Strategist"],
+    "INFJ": ["Life Coach", "Religious Leader", "Social Worker", "Writer", "Journalist", "Politician"],
+    "INFP": ["Counselor/Therapist", "Teacher", "Writer", "Content Creator", "Life Coach", "Musician"],
+    "ENFJ": ["CEO/Executive", "Career Counselor", "Politician", "Diplomat", "Human Resources Manager", "Teacher/Professor"],
+    "ENFP": ["Graphic Designer", "Blogger/Content Creator", "Researcher", "Interior Designer", "Travel Blogger/Photographer", "Journalist"],
+    "ISTJ": ["Accountant", "Lawyer/Judge", "Police Officer/Detective", "Pharmacist", "Banker", "Military Officer"],
+    "ISFJ": ["Doctor", "Teacher", "Therapist / Mental Health Counselor", "Human Resources Specialist", "Customer Service Representative", "Bank Teller / Loan Officer"],
+    "ESTJ": ["CEO / Business Executive", "Bank Manager", "Lawyer / Judge", "Politician / Civil Servant", "Marketing Director", "Mechanical Engineer"],
+    "ESFJ": ["Dietitian / Nutritionist", "Doctor", "Paralegal / Legal Assistant", "Social Worker", "Wedding Planner", "Broadcast Journalist"],
+    "ISTP": ["Engineer", "Cybersecurity Analyst", "Military Specialist", "Private Investigator", "Pilot", "Race Car Driver"],
+    "ISFP": ["Wildlife Photographer", "Zoologist / Animal Caretaker", "Actor / Dancer / Musician", "Chef", "Yoga Instructor", "Artist / Designer"],
+    "ESTP": ["Entrepreneur", "Sales Executive", "Police Officer / Detective", "TV Host / News Anchor", "Professional Athlete", "Bartender / Hospitality Manager"],
+    "ESFP": ["Actor / TV Personality", "Fashion Designer / Stylist", "Photographer / Videographer", "Flight Attendant", "Event Planner / Wedding Planner", "Comedian / Entertainer"]
+}
+
+PERSONALITY_DESCRIPTIONS = {
+    "INTJ": "INTJs are strategic thinkers who excel at planning and executing complex ideas. They are independent and driven, often pursuing leadership roles.",
+    "INTP": "INTPs are highly analytical and curious, always questioning and exploring new ideas. They are natural problem-solvers and enjoy intellectual challenges.",
+    "ENTJ": "ENTJs are natural leaders who thrive in high-pressure environments. They are decisive, assertive, and excel at organizing and managing people and resources.",
+    "ENTP": "ENTPs are energetic and love engaging in intellectual debates. They are quick thinkers and thrive in dynamic environments that encourage creativity and innovation.",
+    "INFJ": "INFJs are insightful and empathetic, always striving to help others. They have strong values and a deep sense of purpose in their work and relationships.",
+    "INFP": "INFPs are idealistic and value deep personal connections. They are creative and driven by their passion for making a positive impact in the world.",
+    "ENFJ": "ENFJs are charismatic and persuasive leaders. They are deeply empathetic and skilled at understanding the needs of others, making them excellent mentors and motivators.",
+    "ENFP": "ENFPs are enthusiastic and spontaneous, always seeking new experiences. They are highly creative and excel in roles that allow for self-expression and freedom.",
+    "ISTJ": "ISTJs are practical and highly organized. They value tradition, responsibility, and attention to detail, making them reliable and hardworking professionals.",
+    "ISFJ": "ISFJs are compassionate and dedicated individuals who take pride in helping others. They are highly dependable and excel in caregiving professions.",
+    "ESTJ": "ESTJs are strong-willed and thrive in structured environments. They are natural managers who excel at enforcing rules and maintaining order.",
+    "ESFJ": "ESFJs are warm and sociable, always eager to support those around them. They thrive in roles that involve community engagement and service.",
+    "ISTP": "ISTPs are highly resourceful and love hands-on work. They excel in problem-solving and enjoy exploring how things work.",
+    "ISFP": "ISFPs are artistic and deeply in touch with their emotions. They seek beauty in the world and express themselves through various creative outlets.",
+    "ESTP": "ESTPs are adventurous and thrive in fast-paced environments. They are highly energetic and enjoy taking risks in both business and life.",
+    "ESFP": "ESFPs are vibrant and full of life, always seeking fun and excitement. They are natural performers and excel in entertainment and social professions."
+}
+
 lottie_animation = load_lottieurl("https://lottie.host/7668124b-6b16-44c9-831b-62878be9ce9c/SI794Nk3RM.json")
 lottie_animation_2 = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_w51pcehl.json")
 
@@ -449,6 +488,10 @@ if st.button("🚀 Submit All Answers"):
 
         st.success("🎉 Answers submitted successfully! Processing with the model...")
         st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
+        st.write(f"**🧠 Personality Traits:** {PERSONALITY_DESCRIPTIONS[predicted_mbti]}")
+        st.write("**💼 Appropriate Career Paths:**")
+        for career in CAREER_PATHS[predicted_mbti]:
+            st.write(f"- {career}")
 
 # with col2:  # Right side
 #     st.write("### 🔵 Right Side Animation")
