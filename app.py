@@ -450,10 +450,10 @@ if st.button("🚀 Submit All Answers"):
         st.success("🎉 Answers submitted successfully! Processing with the model...")
         st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
 
-with col2:  # Right side
-    st.write("### 🔵 Right Side Animation")
-    if lottie_animation_3:
-        st_lottie(lottie_animation_3, speed=1, width=300, height=300)
+# with col2:  # Right side
+#     st.write("### 🔵 Right Side Animation")
+#     if lottie_animation_3:
+#         st_lottie(lottie_animation_3, speed=1, width=300, height=300)
 
 # Lottie Animation inside a rectangle
 st.markdown('<div class="lottie-container">', unsafe_allow_html=True)
