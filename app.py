@@ -371,14 +371,14 @@ st.markdown(
             font-weight: bold;
             color: #FFC107;
         }
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+        # .floating {
+        #     animation: float 3s ease-in-out infinite;
+        # }
+        # @keyframes float {
+        #     0% { transform: translateY(0px); }
+        #     50% { transform: translateY(-10px); }
+        #     100% { transform: translateY(0px); }
+        # }
     </style>
     """,
     unsafe_allow_html=True
