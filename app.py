@@ -469,63 +469,35 @@ st_lottie(lottie_animation_2, speed=1, height=100, key="good")
 
 # Final Submit Button
 
-# if st.button("🚀 Submit All Answers"):
-#     if len(st.session_state.saved_answers) == 0:
-#         st.warning("⚠️ No answers saved. Please respond to at least one question.")
-#     else:
-#         # Format as: "Question Answer"
-#         final_text = " ".join([f"{q} {a}" for q, a in st.session_state.saved_answers.items()])
+if st.button("🚀 Submit All Answers"):
+    if len(st.session_state.saved_answers) == 0:
+        st.warning("⚠️ No answers saved. Please respond to at least one question.")
+    else:
+        # Format as: "Question Answer"
+        final_text = " ".join([f"{q} {a}" for q, a in st.session_state.saved_answers.items()])
         
-#         # Tokenize and send to model
-#         inputs = tokenizer(
-#             final_text,
-#             max_length=512,
-#             padding="max_length",
-#             truncation=True,
-#             return_tensors="pt"
-#         ).to(device)
+        # Tokenize and send to model
+        inputs = tokenizer(
+            final_text,
+            max_length=512,
+            padding="max_length",
+            truncation=True,
+            return_tensors="pt"
+        ).to(device)
 
-#         with torch.no_grad():
-#             outputs = model(**inputs)
+        with torch.no_grad():
+            outputs = model(**inputs)
 
-#         predicted_index = torch.argmax(outputs.logits, dim=1).item()
-#         predicted_mbti = MBTI_CLASSES[predicted_index]
+        predicted_index = torch.argmax(outputs.logits, dim=1).item()
+        predicted_mbti = MBTI_CLASSES[predicted_index]
 
-#         st.success("🎉 Answers submitted successfully! Processing with the model...")
-#         st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
-#         st.write(f"**🧠 Personality Traits:** {PERSONALITY_DESCRIPTIONS[predicted_mbti]}")
-#         st.write("**💼 Appropriate Career Paths:**")
-#         for career in CAREER_PATHS[predicted_mbti]:
-#             st.write(f"- {career}")
-with col2:
-      if st.button("🚀 Submit All Answers"):
-          if len(st.session_state.saved_answers) == 0:
-              st.warning("⚠️ No answers saved. Please respond to at least one question.")
-          else:
-              # Format as: "Question Answer"
-              final_text = " ".join([f"{q} {a}" for q, a in st.session_state.saved_answers.items()])
-              
-              # Tokenize and send to model
-              inputs = tokenizer(
-                  final_text,
-                  max_length=512,
-                  padding="max_length",
-                  truncation=True,
-                  return_tensors="pt"
-              ).to(device)
-      
-              with torch.no_grad():
-                  outputs = model(**inputs)
-      
-              predicted_index = torch.argmax(outputs.logits, dim=1).item()
-              predicted_mbti = MBTI_CLASSES[predicted_index]
-      
-              st.success("🎉 Answers submitted successfully! Processing with the model...")
-              st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
-              st.write(f"**🧠 Personality Traits:** {PERSONALITY_DESCRIPTIONS[predicted_mbti]}")
-              st.write("**💼 Appropriate Career Paths:**")
-              for career in CAREER_PATHS[predicted_mbti]:
-                  st.write(f"- {career}")
+        st.success("🎉 Answers submitted successfully! Processing with the model...")
+        st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
+        st.write(f"**🧠 Personality Traits:** {PERSONALITY_DESCRIPTIONS[predicted_mbti]}")
+        st.write("**💼 Appropriate Career Paths:**")
+        for career in CAREER_PATHS[predicted_mbti]:
+            st.write(f"- {career}")
+
  
 # with col2:  # Right side
 #     st.write("### 🔵 Right Side Animation")
