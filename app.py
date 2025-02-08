@@ -283,6 +283,8 @@ MBTI_CLASSES = [
 ]
 
 lottie_animation = load_lottieurl("https://lottie.host/7668124b-6b16-44c9-831b-62878be9ce9c/SI794Nk3RM.json")
+lottie_animation_2 = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_w51pcehl.json")
+
 
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
@@ -390,6 +392,8 @@ questions = [
     ["What is your approach to conflict resolution?", "Do you prefer structured or flexible work?", "What are your core values?"],
     ["How do you define success?", "Do you prefer spontaneity or routine?", "How do you recharge after a long day?"]
 ]
+
+st_lottie(lottie_animation_2, speed=1, height=300, key="personality")
 
 for i, tab in enumerate(tabs):
     with st.expander(tab):
