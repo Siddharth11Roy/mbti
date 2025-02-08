@@ -352,7 +352,7 @@ st.markdown(
     """
     <style>
         body {
-            background: linear-gradient(to right, #2C2E43, #8E2DE2);
+            background: linear-gradient(to right, #2C2E43, #E03B8B);
             color: white;
         }
         .stApp {
