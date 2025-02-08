@@ -310,10 +310,9 @@ if st.button("Submit All Answers"):
     if len(st.session_state.saved_answers) == 0:
         st.warning("No answers saved. Please respond to at least one question.")
     else:
-        # Format questions and answers properly
-        final_text = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.saved_answers.items()])
-        final_text = preprocess_text(final_text)  # Apply text preprocessing
-
+        # Format as: "Question Answer"
+        final_text = " ".join([f"{q} {preprocess_text(a, is_answer=True)}" for q, a in st.session_state.saved_answers.items()])
+        
         # Tokenize and send to model
         inputs = tokenizer(
             final_text,
@@ -332,5 +331,6 @@ if st.button("Submit All Answers"):
         st.success("Answers submitted successfully! Processing with the model...")
         st.write(f"**Processed Text:**\n{final_text}")  # Debugging
         st.write(f"**Predicted Personality Type:** {predicted_mbti}")  # Final Output
+
 
 
