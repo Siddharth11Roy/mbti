@@ -371,6 +371,9 @@ st.markdown(
             font-weight: bold;
             color: #FFC107;
         }
+        .stLottie {
+            background: transparent !important;
+        }
     </style>
     """,
     unsafe_allow_html=True
