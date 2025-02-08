@@ -456,6 +456,6 @@ if st.button("🚀 Submit All Answers"):
 #         st_lottie(lottie_animation_3, speed=1, width=300, height=300)
 
 # Lottie Animation inside a rectangle
-st.markdown('<div class="lottie-container">', unsafe_allow_html=True)
+
 st_lottie(load_lottieurl("https://lottie.host/4a73f884-4430-4b65-ab81-6f90dd3fa8a4/DtKeLhEmuX.json"), width=150, height=100)
-st.markdown('</div>', unsafe_allow_html=True)
+
