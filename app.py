@@ -296,8 +296,8 @@ for i, tab in enumerate(tabs):
             answer = st.text_area(q, key=key)
             
             if st.button(f"Save Answer {i}-{j}", key=f"save_{i}_{j}"):
-                if len(answer.strip().split()) < 15:
-                    st.warning("Elongate the answer! Minimum 15 words required.")
+                if len(answer.strip().split()) < 1:
+                    st.warning("Elongate the answer! Minimum 1 words required.")
                 elif answer.strip() == "0":
                     st.info("Skipped question.")
                     st.session_state.saved_answers[q] = "Skipped."
