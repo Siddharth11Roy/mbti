@@ -266,6 +266,13 @@ def generate_unique_key(question, index):
     question_hash = hashlib.md5(question.encode()).hexdigest()[:10]  # Shortened hash
     return f"q_{index}_{question_hash}"
 
+MBTI_CLASSES = [
+    "ISTJ", "ISFJ", "INFJ", "INTJ",
+    "ISTP", "ISFP", "INFP", "INTP",
+    "ESTP", "ESFP", "ENFP", "ENTP",
+    "ESTJ", "ESFJ", "ENFJ", "ENTJ"
+]
+
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
     st.session_state.saved_answers = {}
@@ -320,6 +327,7 @@ if st.button("Submit All Answers"):
             outputs = model(**inputs)
 
         prediction = torch.argmax(outputs.logits, dim=1).item()
+        predicted_mbti = MBTI_CLASSES[predicted_index]
 
         st.success("Answers submitted successfully! Processing with the model...")
         st.write(f"**Processed Text:**\n{final_text}")  # Optional Debugging
