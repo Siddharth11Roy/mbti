@@ -425,6 +425,10 @@ st.markdown(
             align-items: center;
             margin: auto; /* Center it */
         }
+        .center-button {
+            display: flex;
+            justify-content: center;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -462,7 +466,7 @@ for i, tab in enumerate(tabs):
                     st.success("✅ Answer saved!")
                   
 st_lottie(lottie_animation_2, speed=1, height=100, key="good")
-
+st.markdown('<div class="center-button">', unsafe_allow_html=True)
 # Final Submit Button
 if st.button("🚀 Submit All Answers"):
     if len(st.session_state.saved_answers) == 0:
@@ -492,7 +496,7 @@ if st.button("🚀 Submit All Answers"):
         st.write("**💼 Appropriate Career Paths:**")
         for career in CAREER_PATHS[predicted_mbti]:
             st.write(f"- {career}")
-
+st.markdown('</div>', unsafe_allow_html=True) 
 # with col2:  # Right side
 #     st.write("### 🔵 Right Side Animation")
 #     if lottie_animation_3:
