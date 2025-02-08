@@ -282,8 +282,7 @@ MBTI_CLASSES = [
     "ESTJ", "ESFJ", "ENFJ", "ENTJ"
 ]
 
-lottie_url = "https://assets5.lottiefiles.com/packages/lf20_zdtukd5q.json"  # Example generated Lottie animation
-lottie_animation = load_lottieurl(lottie_url)
+lottie_animation = load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_zdtukd5q.json")
 
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
@@ -348,11 +347,7 @@ if "saved_answers" not in st.session_state:
 
 
 st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
-if lottie_animation:
-    st_lottie(lottie_animation, speed=1, height=300, key="personality")
-else:
-    st.warning("⚠️ Lottie animation could not be loaded. Using a placeholder.")
-    st.markdown('<p style="text-align:center; font-size:24px;">🎭 Personality Test</p>', unsafe_allow_html=True)
+st_lottie(lottie_animation, height=300, key="PERSONALITY")
 
 st.markdown(
     """
