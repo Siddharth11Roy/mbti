@@ -27,7 +27,7 @@ nltk.download("wordnet")
 
 def generate_unique_key(question, index):
     question_hash = hashlib.md5(question.encode()).hexdigest()[:10]  # Shortened hash
-    return f"q_{index}_{question_hash}
+    return f"q_{index}_{question_hash}"
 
 def preprocess_text(text):
     text = text.lower()
