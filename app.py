@@ -384,7 +384,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
+st.markdown('<p class="title floating">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
 if lottie_animation:
     st_lottie(lottie_animation, speed=1, height=300, key="personality")
 else:
