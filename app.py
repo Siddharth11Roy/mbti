@@ -19,10 +19,15 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import hashlib
 
 nltk.download("stopwords")
 nltk.download("punkt")
 nltk.download("wordnet")
+
+def generate_unique_key(question, index):
+    question_hash = hashlib.md5(question.encode()).hexdigest()[:10]  # Shortened hash
+    return f"q_{index}_{question_hash}
 
 def preprocess_text(text):
     text = text.lower()
@@ -126,81 +131,79 @@ class MBTIClassifier:
 # if __name__ == "__main__":
 #     main()
 
-# Store responses for each section
-if 'responses' not in st.session_state:
-    st.session_state.responses = [None] * 5
-
-# Define questions per section
-sections = [
-    ("Personal Reflections & Identity", [
+questions = {
+    "Personal Reflections & Identity": [
         "How do you usually describe yourself to others?",
         "Do you consider yourself more introverted or extroverted? Why?",
         "How do you handle criticism or feedback from others?",
-        "What is something about yourself that you feel most people don’t understand?",
-        "How do you feel about your relationship with your family and close friends?"
-    ]),
-    ("Life Challenges & Decision-Making", [
+    ],
+    "Life Challenges & Decision-Making": [
         "What has been the hardest decision you’ve had to make in life?",
         "Have you ever struggled with deciding your career path? How did you deal with it?",
         "If you could go back in time and change one decision, what would it be and why?",
-        "How do you react when faced with uncertainty or major life changes?"
-    ]),
-    ("Emotions & Thought Processes", [
+    ],
+    "Emotions & Thought Processes": [
         "What usually makes you feel overwhelmed or stressed?",
         "How do you usually deal with sadness or disappointment?",
         "Do you find comfort in being alone, or do you prefer being around people when you're upset?",
-        "What do you think is your greatest strength and your biggest weakness?"
-    ]),
-    ("Interests & Preferences", [
+    ],
+    "Interests & Preferences": [
         "What books, movies, or TV shows have had a deep impact on you?",
         "Do you have a favorite song that reflects your current mood or personality?",
         "If you had to pick a fictional character that closely matches your personality, who would it be and why?",
-        "How do you usually spend your free time?"
-    ]),
-    ("Beliefs & Philosophies", [
+    ],
+    "Beliefs & Philosophies": [
         "Do you believe people are generally good or bad? Why?",
         "What are your thoughts on personal freedom versus societal expectations?",
         "How do you define happiness in your life?",
-        "Do you believe that everything happens for a reason? Why or why not?"
-    ])
-]
+    ],
+}
 
-# Tab Layout
-tabs = st.tabs([s[0] for s in sections])
+# Temporary storage for responses
+if "saved_answers" not in st.session_state:
+    st.session_state.saved_answers = {}
 
-for i, (title, questions) in enumerate(sections):
-    with tabs[i]:
-        st.header(title)
-        responses = []
-        for q in questions:
-            answer = st.text_area(q, key=f"q_{i}_{q[:10]}")
-            if answer.strip() and answer.strip() != "0":
-                if len(answer.split()) < 15:
-                    st.warning("Elongate the answer")
-                else:
-                    responses.append(f"{q} - {answer}")
-        
-        if st.button("Submit Section", key=f"submit_{i}"):
-            if responses:
-                st.session_state.responses[i] = " ".join(responses)
-                st.success("Section Submitted!")
+# Tabs for different sections
+tabs = list(questions.keys())
+selected_tab = st.sidebar.radio("Select a section:", tabs)
 
-# Final Submission
-total_filled = sum(1 for r in st.session_state.responses if r is not None)
-if total_filled == len(sections):
-    if st.button("Final Submit"):
-        final_text = " ".join(st.session_state.responses)
+# Display questions for the selected section
+st.header(selected_tab)
+for i, q in enumerate(questions[selected_tab]):
+    answer = st.text_area(q, key=generate_unique_key(q, i))
+
+    # Save button for each question
+    if st.button(f"Save Answer {i+1}", key=f"save_{selected_tab}_{i}"):
+        if len(answer.split()) < 15:
+            st.warning("Elongate the answer")
+        elif answer.strip() == "0":
+            st.session_state.saved_answers[q] = "Skipped"
+            st.success("Answer Skipped!")
+        else:
+            st.session_state.saved_answers[q] = preprocess_text(answer)
+            st.success("Answer Saved!")
+
+# Final Submit button
+if st.button("Submit All Answers"):
+    if len(st.session_state.saved_answers) == 0:
+        st.warning("No answers saved. Please respond to at least one question.")
+    else:
+        # Combine all saved answers into a single paragraph
+        final_text = "\n".join([f"{q} {a}" for q, a in st.session_state.saved_answers.items()])
         final_text = preprocess_text(final_text)
-        
-        # Tokenize
+
+        # Tokenize and send to model
         inputs = tokenizer(
-            final_text, return_tensors='pt', truncation=True, padding='max_length', max_length=512
+            final_text,
+            max_length=512,
+            padding="max_length",
+            truncation=True,
+            return_tensors="pt"
         ).to(device)
-        
-        # Model Prediction
+
         with torch.no_grad():
             outputs = model(**inputs)
-        prediction = torch.argmax(outputs.logits, dim=1).item()
         
-        st.success(f"Predicted Personality Type: {prediction}")
+        st.success("Answers submitted successfully! Processing with the model...")
+        st.write(final_text)  # Display processed text (optional)
 
