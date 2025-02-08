@@ -410,7 +410,7 @@ for i, tab in enumerate(tabs):
                     st.session_state.saved_answers[q] = answer
                     st.success("✅ Answer saved!")
                   
-st_lottie(lottie_animation_2, speed=1, height=300, key="good")
+st_lottie(lottie_animation_2, speed=1, height=100, key="good")
 
 # Final Submit Button
 if st.button("🚀 Submit All Answers"):
