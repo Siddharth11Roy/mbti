@@ -8,3 +8,4 @@ nltk
 torch
 streamlit
 huggingface_hub
+streamlit-lottie
