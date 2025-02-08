@@ -278,9 +278,102 @@ if "saved_answers" not in st.session_state:
     st.session_state.saved_answers = {}
 
 # Streamlit UI
-st.title("MBTI Personality Classification")
+# st.title("MBTI Personality Classification")
 
-tabs = ["Topic 1", "Topic 2", "Topic 3", "Topic 4", "Topic 5"]
+# tabs = ["Topic 1", "Topic 2", "Topic 3", "Topic 4", "Topic 5"]
+# questions = [
+#     ["What motivates you?", "How do you handle stress?", "Describe your ideal work environment."],
+#     ["Do you prefer working alone or in a team?", "How do you make important decisions?", "What is your biggest strength?"],
+#     ["How do you react to new challenges?", "Do you enjoy planning ahead?", "Are you more practical or imaginative?"],
+#     ["What is your approach to conflict resolution?", "Do you prefer structured or flexible work?", "What are your core values?"],
+#     ["How do you define success?", "Do you prefer spontaneity or routine?", "How do you recharge after a long day?"]
+# ]
+
+# for i, tab in enumerate(tabs):
+#     with st.expander(tab):
+#         for j, q in enumerate(questions[i]):
+#             key = generate_unique_key(q, i * 10 + j)  # Unique key per question
+#             answer = st.text_area(q, key=key)
+            
+#             if st.button(f"Save Answer {i}-{j}", key=f"save_{i}_{j}"):
+#                 if len(answer.strip().split()) < 1:
+#                     st.warning("Elongate the answer! Minimum 1 words required.")
+#                 elif answer.strip() == "0":
+#                     st.info("Skipped question.")
+#                     st.session_state.saved_answers[q] = "Skipped."
+#                 else:
+#                     st.session_state.saved_answers[q] = preprocess_text(answer)
+#                     st.success("Answer saved!")
+
+# # Final Submit Button
+# if st.button("Submit All Answers"):
+#     if len(st.session_state.saved_answers) == 0:
+#         st.warning("No answers saved. Please respond to at least one question.")
+#     else:
+#         # Format as: "Question Answer"
+#         final_text = " ".join([f"{q} {preprocess_text(a)}" for q, a in st.session_state.saved_answers.items()])
+        
+#         # Tokenize and send to model
+#         inputs = tokenizer(
+#             final_text,
+#             max_length=512,
+#             padding="max_length",
+#             truncation=True,
+#             return_tensors="pt"
+#         ).to(device)
+
+#         with torch.no_grad():
+#             outputs = model(**inputs)
+
+#         predicted_index = torch.argmax(outputs.logits, dim=1).item()
+#         predicted_mbti = MBTI_CLASSES[predicted_index]
+
+#         st.success("Answers submitted successfully! Processing with the model...")
+#         # st.write(f"**Processed Text:**\n{final_text}")  # Debugging
+#         st.write(f"**Predicted Personality Type:** {predicted_mbti}")  # Final Output
+
+
+st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
+
+st.markdown(
+    """
+    <style>
+        body {
+            background: linear-gradient(to right, #4A00E0, #8E2DE2);
+            color: white;
+        }
+        .stApp {
+            background-color: #1E1E2F;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .css-1v0mbdj {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFC107;
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
+st.image("personality_image.jpg", use_column_width=True, caption="Your Personality, Your Story", output_format="auto")
+
+tabs = ["💡 Topic 1", "🤔 Topic 2", "🚀 Topic 3", "🧩 Topic 4", "🎭 Topic 5"]
 questions = [
     ["What motivates you?", "How do you handle stress?", "Describe your ideal work environment."],
     ["Do you prefer working alone or in a team?", "How do you make important decisions?", "What is your biggest strength?"],
@@ -295,23 +388,23 @@ for i, tab in enumerate(tabs):
             key = generate_unique_key(q, i * 10 + j)  # Unique key per question
             answer = st.text_area(q, key=key)
             
-            if st.button(f"Save Answer {i}-{j}", key=f"save_{i}_{j}"):
+            if st.button(f"💾 Save Answer", key=f"save_{i}_{j}"):
                 if len(answer.strip().split()) < 1:
-                    st.warning("Elongate the answer! Minimum 1 words required.")
+                    st.warning("⚠️ Elongate the answer! Minimum 1 word required.")
                 elif answer.strip() == "0":
-                    st.info("Skipped question.")
+                    st.info("⏭️ Skipped question.")
                     st.session_state.saved_answers[q] = "Skipped."
                 else:
-                    st.session_state.saved_answers[q] = preprocess_text(answer)
-                    st.success("Answer saved!")
+                    st.session_state.saved_answers[q] = answer
+                    st.success("✅ Answer saved!")
 
 # Final Submit Button
-if st.button("Submit All Answers"):
+if st.button("🚀 Submit All Answers"):
     if len(st.session_state.saved_answers) == 0:
-        st.warning("No answers saved. Please respond to at least one question.")
+        st.warning("⚠️ No answers saved. Please respond to at least one question.")
     else:
         # Format as: "Question Answer"
-        final_text = " ".join([f"{q} {preprocess_text(a)}" for q, a in st.session_state.saved_answers.items()])
+        final_text = " ".join([f"{q} {a}" for q, a in st.session_state.saved_answers.items()])
         
         # Tokenize and send to model
         inputs = tokenizer(
@@ -328,9 +421,7 @@ if st.button("Submit All Answers"):
         predicted_index = torch.argmax(outputs.logits, dim=1).item()
         predicted_mbti = MBTI_CLASSES[predicted_index]
 
-        st.success("Answers submitted successfully! Processing with the model...")
-        # st.write(f"**Processed Text:**\n{final_text}")  # Debugging
-        st.write(f"**Predicted Personality Type:** {predicted_mbti}")  # Final Output
-
+        st.success("🎉 Answers submitted successfully! Processing with the model...")
+        st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
 
 
