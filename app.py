@@ -282,7 +282,7 @@ MBTI_CLASSES = [
     "ESTJ", "ESFJ", "ENFJ", "ENTJ"
 ]
 
-lottie_animation = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_zdtukd5q.json")
+lottie_animation = load_lottieurl("https://lottie.host/7668124b-6b16-44c9-831b-62878be9ce9c/SI794Nk3RM.json")
 
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
