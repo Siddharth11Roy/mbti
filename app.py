@@ -348,6 +348,11 @@ if "saved_answers" not in st.session_state:
 
 
 st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
+if lottie_animation:
+    st_lottie(lottie_animation, speed=1, height=300, key="personality")
+else:
+    st.warning("⚠️ Lottie animation could not be loaded. Using a placeholder.")
+    st.markdown('<p style="text-align:center; font-size:24px;">🎭 Personality Test</p>', unsafe_allow_html=True)
 
 st.markdown(
     """
@@ -377,10 +382,6 @@ st.markdown(
 )
 
 st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
-if lottie_animation:
-    st_lottie(lottie_animation, speed=1, height=300, key="personality")
-else:
-    st.warning("Lottie animation could not be loaded.")
   
 tabs = ["💡 Topic 1", "🤔 Topic 2", "🚀 Topic 3", "🧩 Topic 4", "🎭 Topic 5"]
 questions = [
