@@ -329,7 +329,7 @@ if st.button("Submit All Answers"):
         predicted_mbti = MBTI_CLASSES[predicted_index]
 
         st.success("Answers submitted successfully! Processing with the model...")
-        st.write(f"**Processed Text:**\n{final_text}")  # Debugging
+        # st.write(f"**Processed Text:**\n{final_text}")  # Debugging
         st.write(f"**Predicted Personality Type:** {predicted_mbti}")  # Final Output
 
 
