@@ -345,6 +345,7 @@ if "saved_answers" not in st.session_state:
 #         # st.write(f"**Processed Text:**\n{final_text}")  # Debugging
 #         st.write(f"**Predicted Personality Type:** {predicted_mbti}")  # Final Output
 
+st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
 
 
 st.markdown(
@@ -377,7 +378,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
 st_lottie(lottie_animation, speed=1, height=300, key="personality")
 
 st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
