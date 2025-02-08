@@ -311,7 +311,7 @@ if st.button("Submit All Answers"):
         st.warning("No answers saved. Please respond to at least one question.")
     else:
         # Format as: "Question Answer"
-        final_text = " ".join([f"{q} {preprocess_text(a, is_answer=True)}" for q, a in st.session_state.saved_answers.items()])
+        final_text = " ".join([f"{q} {preprocess_text(a)}" for q, a in st.session_state.saved_answers.items()])
         
         # Tokenize and send to model
         inputs = tokenizer(
