@@ -253,12 +253,12 @@ def load_mbti_model():
 # Load the model once and use it throughout the app
 tokenizer, model, device = load_mbti_model()
 
-def load_lottieurl(url):
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+# def load_lottieurl(url):
+#     response = requests.get(url)
+#     if response.status_code == 200:
+#         return response.json()
+#     else:
+#         return None
 
 # Preprocessing function
 def preprocess_text(text):
@@ -282,7 +282,7 @@ MBTI_CLASSES = [
     "ESTJ", "ESFJ", "ENFJ", "ENTJ"
 ]
 
-lottie_animation = load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_zdtukd5q.json")
+# lottie_animation = load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_zdtukd5q.json")
 
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
