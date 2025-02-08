@@ -385,7 +385,7 @@ if "saved_answers" not in st.session_state:
 #         # st.write(f"**Processed Text:**\n{final_text}")  # Debugging
 #         st.write(f"**Predicted Personality Type:** {predicted_mbti}")  # Final Output
 
-st.set_page_config(page_title="MBTI Personality Test", page_icon="🔮", layout="wide")
+st.set_page_config(page_title="Personality Test For Career Path", page_icon="🔮", layout="wide")
 
 
 st.markdown(
@@ -433,7 +433,7 @@ st.markdown(
 col, col2 = st.columns([4,1])
 st_lottie(lottie_animation, speed=1, height=300, key="personality")
 
-st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
+st.markdown('<p class="title">🔮 Discover Your Career Path Based On Your Personality Type 🔮</p>', unsafe_allow_html=True)
   
 tabs = ["💡 Topic 1", "🤔 Topic 2", "🚀 Topic 3", "🧩 Topic 4", "🎭 Topic 5"]
 questions = [
