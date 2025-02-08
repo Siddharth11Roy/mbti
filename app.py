@@ -59,7 +59,7 @@ def cached_predict_mbti(text, _model, _tokenizer, _device):
             raise ValueError("Input text is too short")
 
         # Preprocess
-        text = preprocess_text
+        text = preprocess_text(text)
 
         # Tokenize
         inputs = _tokenizer(
