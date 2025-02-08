@@ -282,7 +282,7 @@ MBTI_CLASSES = [
     "ESTJ", "ESFJ", "ENFJ", "ENTJ"
 ]
 
-lottie_url = "https://lottie.host/0c9630b4-89f8-4e0f-a30e-9b52fa5b3b0b/R5oTQhvLgi.json"  # Example generated Lottie animation
+lottie_url = "https://assets5.lottiefiles.com/packages/lf20_zdtukd5q.json"  # Example generated Lottie animation
 lottie_animation = load_lottieurl(lottie_url)
 
 # Initialize session state for saved answers
