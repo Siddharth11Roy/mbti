@@ -284,8 +284,6 @@ MBTI_CLASSES = [
 
 lottie_animation = load_lottieurl("https://lottie.host/7668124b-6b16-44c9-831b-62878be9ce9c/SI794Nk3RM.json")
 lottie_animation_2 = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_w51pcehl.json")
-lottie_animation_3 = load_lottieurl("https://lottie.host/4a73f884-4430-4b65-ab81-6f90dd3fa8a4/DtKeLhEmuX.json")
-
 
 # Initialize session state for saved answers
 if "saved_answers" not in st.session_state:
@@ -377,6 +375,17 @@ st.markdown(
             background: none !important;
             mix-blend-mode: screen; /* Optional: Blends with background */
         }
+        .lottie-container {
+            width: 250px;
+            height: 150px;
+            background-color: #f5f5f5; /* Light gray */
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto; /* Center it */
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -445,3 +454,8 @@ with col2:  # Right side
     st.write("### 🔵 Right Side Animation")
     if lottie_animation_3:
         st_lottie(lottie_animation_3, speed=1, width=300, height=300)
+
+# Lottie Animation inside a rectangle
+st.markdown('<div class="lottie-container">', unsafe_allow_html=True)
+st_lottie(load_lottie("https://lottie.host/4a73f884-4430-4b65-ab81-6f90dd3fa8a4/DtKeLhEmuX.json"), width=150, height=100)
+st.markdown('</div>', unsafe_allow_html=True)
