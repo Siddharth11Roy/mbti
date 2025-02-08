@@ -371,20 +371,12 @@ st.markdown(
             font-weight: bold;
             color: #FFC107;
         }
-        # .floating {
-        #     animation: float 3s ease-in-out infinite;
-        # }
-        # @keyframes float {
-        #     0% { transform: translateY(0px); }
-        #     50% { transform: translateY(-10px); }
-        #     100% { transform: translateY(0px); }
-        # }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown('<p class="title floating">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
+st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
 if lottie_animation:
     st_lottie(lottie_animation, speed=1, height=300, key="personality")
 else:
