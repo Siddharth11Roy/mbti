@@ -284,6 +284,7 @@ MBTI_CLASSES = [
 
 lottie_animation = load_lottieurl("https://lottie.host/7668124b-6b16-44c9-831b-62878be9ce9c/SI794Nk3RM.json")
 lottie_animation_2 = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_w51pcehl.json")
+lottie_animation_3 = load_lottieurl("https://lottie.host/4a73f884-4430-4b65-ab81-6f90dd3fa8a4/DtKeLhEmuX.json")
 
 
 # Initialize session state for saved answers
@@ -380,6 +381,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+col, col2 = st.columns[(4,1)]
 st_lottie(lottie_animation, speed=1, height=300, key="personality")
 
 st.markdown('<p class="title">🔮 Discover Your Personality Type 🔮</p>', unsafe_allow_html=True)
@@ -438,4 +441,7 @@ if st.button("🚀 Submit All Answers"):
         st.success("🎉 Answers submitted successfully! Processing with the model...")
         st.write(f"**🔮 Predicted Personality Type:** {predicted_mbti}")
 
-
+with col2:  # Right side
+    st.write("### 🔵 Right Side Animation")
+    if lottie_animation_3:
+        st_lottie(lottie_animation_3, speed=1, width=300, height=300)
