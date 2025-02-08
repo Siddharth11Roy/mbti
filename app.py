@@ -378,7 +378,7 @@ st.markdown(
         .lottie-container {
             width: 250px;
             height: 150px;
-            background-color: #f5f5f5; /* Light gray */
+            background-color: #1E1E2F; /* Light gray */
             border-radius: 10px;
             padding: 10px;
             display: flex;
